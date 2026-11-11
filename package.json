@@ -1,0 +1,20 @@
+{
+  "name": "rainbow-class",
+  "version": "1.0.0",
+  "description": "일곱 빛깔 무지개 학급 — 학급 경영 사례 발표용 웹 슬라이드 (한국어 ⇄ English)",
+  "license": "UNLICENSED",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "vite",
+    "dev": "vite",
+    "check": "node tools/check.mjs",
+    "build": "node tools/check.mjs && vite build && node tools/check-dist.mjs",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "pretendard": "^1.3.9",
+    "vite": "^8.3.8",
+    "vite-plugin-singlefile": "^2.3.4"
+  }
+}

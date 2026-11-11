@@ -1,0 +1,40 @@
+# 일곱 빛깔 무지개 학급 — 학급 경영 사례 발표 · © 2026 티쳐무 · 모든 권리 보유
+# 푸시마다 내용 점검 → 빌드(+빌드 결과 점검) 뒤 dist/ 를 GitHub Pages 에 올린다. dist/ 는 커밋하지 않는다.
+name: deploy
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      # npm run build = 내용 점검(tools/check.mjs) → vite build → 빌드 결과 점검(tools/check-dist.mjs)
+      - run: npm run build
+      - uses: actions/configure-pages@v5
+        continue-on-error: true
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5
