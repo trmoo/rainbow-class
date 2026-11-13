@@ -35,6 +35,15 @@ export const COLORS = [
   { key: 'violet', name: t('보라', 'Violet'), meaning: t('소통 · 자치 · IT', 'Communication, Self-Government & IT') },
 ];
 
+/** 계획안의 ♥·★ 표시를 처음 보는 사람도 읽을 수 있게 글로 풀어 단 꼬리표.
+ *  색깔 장 항목의 그림(icon)은 내용을 보여 주고, 이 꼬리표는 그 항목이 무엇인지(활동/약속)를 알려 준다. */
+export const MARKS = {
+  '♥':   { kind: 'heart', key: false, label: t('함께하는 활동', 'Activity') },
+  '♥♥♥': { kind: 'heart', key: true,  label: t('가장 중요한 활동', 'Key activity') },
+  '★':   { kind: 'star',  key: false, label: t('함께 지킬 약속', 'Rule') },
+  '★★★': { kind: 'star',  key: true,  label: t('가장 중요한 약속', 'Key rule') },
+};
+
 /** 장 머리에 작게 붙는 묶음 이름 */
 const SEC = {
   intro:   t('배경', 'Background'),
@@ -196,17 +205,15 @@ export const SLIDES = [
   /* 8 ─────────────────────────────── 빨강 */
   color('red', {
     items: [
-      { mark: '♥', head: t('1인 1역', 'One person, one role'),
+      { mark: '♥', icon: '🧩', head: t('1인 1역', 'One person, one role'),
         body: t('첫 2주 안에 모두가 반에서 맡을 역할을 하나씩 정합니다.', 'Within the first two weeks, every student takes on one role in the class.') },
-      { mark: '★', head: t('학생 주도 봉사', 'Student-led volunteering'),
+      { mark: '★', icon: '🤝', head: t('학생 주도 봉사', 'Student-led volunteering'),
         body: t('학생이 기획한 프로젝트 봉사와 도우미 활동도 교내 봉사 시간이 됩니다.', 'Service projects that students plan themselves, and helper roles, count as school volunteer hours.') },
-      { mark: '♥', head: t('또래 학습 멘토링', 'Peer learning mentoring'),
+      { mark: '♥', icon: '👥', head: t('또래 학습 멘토링', 'Peer learning mentoring'),
         body: t('친구끼리 가르치고 배우는 짝을 잇습니다.', 'Students teach and learn from each other in mentoring pairs.') },
-      { mark: '♥♥♥', head: t('진로', 'Career'),
+      { mark: '♥♥♥', icon: '🧭', head: t('진로', 'Career'),
         body: t('1학기 안에 다음 학년 선택 과목을 정합니다. 적성 · 흥미 · 직업 가치관을 알아 가고, 기록에 학업 · 진로 · 공동체 역량이 고루 담기게 합니다.',
           'Choose next year’s elective subjects in the first semester. Explore your aptitude, interests and work values, and let your record show academic, career and community competencies.') },
-      { mark: '♥', head: t('학급 화폐와 뽑기판', 'Class currency & lucky-draw board'),
-        body: t('2024년 계획에 넣었습니다.', 'Part of the 2024 plan.') },
     ],
     quote: t('당장의 목표나 꿈이 없더라도, 지금 하는 모든 경험이 신기하게도 나중에 다 도움이 됩니다.',
       'Even without a goal or a dream right now, every experience you have now will, surprisingly, help you later.'),
@@ -218,11 +225,11 @@ export const SLIDES = [
   /* 9 ─────────────────────────────── 주황 */
   color('orange', {
     items: [
-      { mark: '', head: t('학생 · 학부모 상담', 'Counseling students & parents'),
+      { mark: '', icon: '🗣️', head: t('학생 · 학부모 상담', 'Counseling students & parents'),
         body: t('상담으로 학생과 가정을 알아 갑니다.', 'Regular conversations with students and their families.') },
-      { mark: '♥', head: t('점심 데이트', 'Lunch date'),
+      { mark: '♥', icon: '🍱', head: t('점심 데이트', 'Lunch date'),
         body: t('학기 중 점심시간에 담임과 학생이 함께하는 「데이트」입니다.', 'During the semester, I have a “lunch date” with my students at lunchtime.') },
-      { mark: '♥♥♥', head: t('배려하는 말 쓰기', 'Considerate words'),
+      { mark: '♥♥♥', icon: '💌', head: t('배려하는 말 쓰기', 'Considerate words'),
         body: t('비속어 대신 긍정어를 씁니다. 친구 사이여도 장난을 가볍게 여기지 않습니다 — 내 뜻과 상관없이 상대는 상처받을 수 있습니다.',
           'Positive words instead of slang. Don’t take pranks lightly, even between friends — someone can be hurt, whatever you meant.') },
     ],
@@ -239,14 +246,14 @@ export const SLIDES = [
   /* 10 ────────────────────────────── 노랑 */
   color('yellow', {
     items: [
-      { mark: '♥♥♥', head: t('인사 예절', 'Greetings'),
+      { mark: '♥♥♥', icon: '🙇', head: t('인사 예절', 'Greetings'),
         body: t('「안녕하세요」 「감사합니다」 「안녕히 계세요」만 잘해도 절반은 성공입니다.', '“Hello,” “Thank you,” “Goodbye” — say these well, and you are halfway there.') },
-      { mark: '♥', head: t('경청과 말하기', 'Listening & speaking'),
+      { mark: '♥', icon: '👂', head: t('경청과 말하기', 'Listening & speaking'),
         body: t('친구의 발표를 잘 듣고, 궁금하면 꼭 묻습니다. 또박또박 말하는 연습은 발표와 면접에도 도움이 됩니다.',
           'Listen when classmates present, and always ask when you are curious. Practicing clear speech helps in presentations and interviews.') },
-      { mark: '', head: t('책임감', 'Responsibility'),
+      { mark: '', icon: '✅', head: t('책임감', 'Responsibility'),
         body: t('사회에 나가면 누구에게나 역할이 있습니다. 1인 1역과 청소를 책임 있게.', 'Out in society, everyone has a role. Take your class role and cleaning seriously.') },
-      { mark: '♥♥♥', head: t('적극성과 주체성', 'Initiative & ownership'),
+      { mark: '♥♥♥', icon: '🙋', head: t('적극성과 주체성', 'Initiative & ownership'),
         body: t('수업 활동과 수행평가를 대충 하지 않습니다. 기록은 선생님이 지켜본 모습이라, 나중에 고쳐 달라고 할 수 없습니다.',
           'Do class activities and assessments sincerely. Teachers record what they have seen — you cannot ask them to rewrite it later.') },
     ],
@@ -265,16 +272,16 @@ export const SLIDES = [
   /* 11 ────────────────────────────── 초록 */
   color('green', {
     items: [
-      { mark: '♥', head: t('학급 이벤트', 'Class events'),
+      { mark: '♥', icon: '🎉', head: t('학급 이벤트', 'Class events'),
         body: t('좋은 아이디어는 학급 회의에서 누구나 제안합니다.', 'Anyone can propose an idea at our class meeting.') },
-      { mark: '♥', head: t('함께하는 학교 행사', 'School events together'),
+      { mark: '♥', icon: '🏫', head: t('함께하는 학교 행사', 'School events together'),
         body: t('현장체험학습 · 체육한마당 · 학교 축제(2024), 수학여행 · 체육한마당 · 동아리 축제(2026)',
           'Field trip, sports day, school festival (2024); school trip, sports day, club festival (2026)') },
-      { mark: '★', head: t('식사', 'Meals'),
+      { mark: '★', icon: '🍚', head: t('식사', 'Meals'),
         body: t('밥은 꼭 먹기! 공복에 단 음식은 「당 스파이크」를 부릅니다.', 'Never skip meals! Sweets on an empty stomach bring a “sugar spike.”') },
-      { mark: '♥', head: t('몸과 마음의 건강', 'Body & mind'),
+      { mark: '♥', icon: '🩺', head: t('몸과 마음의 건강', 'Body & mind'),
         body: t('내 상태를 스스로 살피고, 필요하면 보건실 · 위(Wee) 클래스 · 담임에게 도움을 청합니다.', 'Check on yourself, and ask for help — the nurse’s office, the Wee Class counseling room, or me.') },
-      { mark: '', head: t('안전', 'Safety'),
+      { mark: '', icon: '🛡️', head: t('안전', 'Safety'),
         body: t('금연, 학교폭력의 일곱 갈래 알기, 무면허 전동킥보드 금지.', 'No smoking, know the seven types of school violence, no unlicensed e-scooters.') },
     ],
     pun: {
@@ -289,16 +296,16 @@ export const SLIDES = [
   /* 12 ────────────────────────────── 파랑 */
   color('blue', {
     items: [
-      { mark: '★★★', head: t('용의 복장', 'Dress code'),
+      { mark: '★★★', icon: '👔', head: t('용의 복장', 'Dress code'),
         body: t('교복 · 생활복 · 체육복을 입고, 슬리퍼로 등교하지 않습니다.', 'Wear the uniform or PE clothes; no slippers to school.') },
-      { mark: '★★★', head: t('등교 시간', 'Arriving on time'),
+      { mark: '★★★', icon: '⏰', head: t('등교 시간', 'Arriving on time'),
         body: t('8시 50분까지 입실(2026년은 8시 40분). 늦으면 먼저 수업에 들어가고, 다음 쉬는 시간에 담임에게 얼굴을 보입니다.',
           'In the classroom by 8:50 (8:40 in 2026). If you are late, go to class first, then come and see me at the next break.') },
-      { mark: '★★★', head: t('출결', 'Attendance'),
+      { mark: '★★★', icon: '📋', head: t('출결', 'Attendance'),
         body: t('지각 · 결석은 부모님이 연락하고, 증빙 서류는 다음 날까지 냅니다.', 'Parents contact me about lateness or absence; documents are due the next day.') },
-      { mark: '★★★', head: t('분리배출', 'Recycling'),
+      { mark: '★★★', icon: '♻️', head: t('분리배출', 'Recycling'),
         body: t('비닐은 떼고, 플라스틱은 헹궈서.', 'Peel off the plastic wrap, rinse the bottle.') },
-      { mark: '★', head: t('청소', 'Cleaning'),
+      { mark: '★', icon: '🧹', head: t('청소', 'Cleaning'),
         body: t('다 같이 집에 가는 우리 반. 청소 시간에는 청소 대장이 담임에 준하는 권한을 가집니다.',
           'Our class goes home together. During cleaning time, the cleaning captain has the homeroom teacher’s authority.') },
     ],
@@ -311,15 +318,15 @@ export const SLIDES = [
   /* 13 ────────────────────────────── 남색 */
   color('indigo', {
     items: [
-      { mark: '★', head: t('수업 준비', 'Ready for class'),
+      { mark: '★', icon: '✏️', head: t('수업 준비', 'Ready for class'),
         body: t('종이 치면 자리에 앉아 수업 준비. 필기구는 늘 챙깁니다.', 'When the bell rings, be seated and ready. Always bring a pen.') },
-      { mark: '', head: t('정진반 (자기 주도 학습)', 'Self-directed study hall'),
+      { mark: '', icon: '🗓️', head: t('정진반 (자기 주도 학습)', 'Self-directed study hall'),
         body: t('방과 후 스스로 계획을 세워 공부하는 습관을 기릅니다.', 'After school, students build the habit of planning and studying on their own.') },
-      { mark: '', head: t('학급책방 107 → 202', 'Class bookshop 107 → 202'),
+      { mark: '', icon: '📚', head: t('학급책방 107 → 202', 'Class bookshop 107 → 202'),
         body: t('독서는 모든 교과의 핵심 역량. 이름의 숫자는 우리 반 번호(1-7, 2-2)에서 왔습니다.', 'Reading is at the core of every subject. The number comes from our class: 1-7, then 2-2.') },
-      { mark: '', head: t('3분 스피치', 'Three-minute speech'),
+      { mark: '', icon: '🎤', head: t('3분 스피치', 'Three-minute speech'),
         body: t('한 사람씩 앞에 서서 말하는 개인 발표입니다.', 'Each student gives a short speech in front of the class.') },
-      { mark: '', head: t('집단지성 프로젝트', 'Collective-intelligence project'),
+      { mark: '', icon: '🧠', head: t('집단지성 프로젝트', 'Collective-intelligence project'),
         body: t('모둠이 함께 탐구하고 발표합니다.', 'Groups explore a topic together and present it.') },
     ],
     quote: t('중학교 때 성적이 어떠했건, 「새로 시작한다」는 마음으로 하루하루를 소중하게.',
@@ -332,15 +339,15 @@ export const SLIDES = [
   /* 14 ────────────────────────────── 보라 */
   color('violet', {
     items: [
-      { mark: '★★★', head: t('휴대폰', 'Phones'),
+      { mark: '★★★', icon: '📱', head: t('휴대폰', 'Phones'),
         body: t('등교하면 전원을 끄고 휴대폰 가방의 내 자리에 넣습니다.', 'On arrival, phones are switched off and go into your own slot in the class phone bag.') },
-      { mark: '★★★', head: t('태블릿 · 노트북', 'Tablets & laptops'),
+      { mark: '★★★', icon: '💻', head: t('태블릿 · 노트북', 'Tablets & laptops'),
         body: t('학교에서는 「전원 OFF」가 기본, 허락받고 공부에만. 2026년에는 쉬는 시간 사용도 없앴습니다.', 'Off by default; with permission, for study only. In 2026, breaks became device-free, too.') },
-      { mark: '★★★', head: t('학급 자치', 'Class self-government'),
+      { mark: '★★★', icon: '🗳️', head: t('학급 자치', 'Class self-government'),
         body: t('회장 · 부회장에 나서려면 공약문과 포스터를 준비합니다.', 'Want to be class president? Prepare a pledge and a poster.') },
-      { mark: '★', head: t('단톡방 규칙', 'Class group-chat rules'),
+      { mark: '★', icon: '💬', head: t('단톡방 규칙', 'Class group-chat rules'),
         body: t('공지에는 답장 대신 하트 하나. 비방글이나 불법 게시물을 보면 바로 어른에게 알립니다.', 'Answer a notice with a heart, not a reply. Report hateful or illegal posts to an adult right away.') },
-      { mark: '★', head: t('구글 클래스룸 · e알리미', 'Google Classroom & school app'),
+      { mark: '★', icon: '🔔', head: t('구글 클래스룸 · e알리미', 'Google Classroom & school app'),
         body: t('수업 자료와 가정통신문을 온라인으로 받습니다.', 'Class materials and school letters arrive online.') },
     ],
     chat: {
@@ -379,7 +386,6 @@ export const SLIDES = [
     cards: [
       { color: 'orange', icon: '🍱', head: t('점심 데이트', 'Lunch date'), body: t('점심시간에 담임과 함께', 'Lunch with the homeroom teacher') },
       { color: 'red', icon: '🧩', head: t('1인 1역', 'One person, one role'), body: t('모두에게 반의 역할 하나', 'A class role for everyone') },
-      { color: 'red', icon: '🪙', head: t('학급 화폐 · 뽑기판', 'Class currency & lucky draw'), body: t('2024년 계획', 'In the 2024 plan') },
       { color: 'indigo', icon: '🎤', head: t('3분 스피치', 'Three-minute speech'), body: t('한 사람씩 앞에 서서', 'Everyone takes the floor') },
       { color: 'indigo', icon: '🧠', head: t('집단지성 프로젝트', 'Collective-intelligence project'), body: t('모둠 탐구와 발표', 'Group inquiry and presentation') },
       { color: 'indigo', icon: '📚', head: t('학급책방', 'Class bookshop'), body: t('107 → 202', '107 → 202') },

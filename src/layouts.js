@@ -5,7 +5,7 @@
  *    still 이 참이면 움직임·누르기를 끈 「정지 화면」(목차 썸네일·PDF 인쇄용)이다.
  */
 import { h, s, L, rich } from './dom.js';
-import { META, COLORS, SLIDES } from './slides.js';
+import { META, COLORS, MARKS, SLIDES } from './slides.js';
 import handoutUrl from './assets/handout-2024-p1.jpg';
 
 const colorOf = (key) => COLORS.find((c) => c.key === key);
@@ -58,11 +58,11 @@ function foot(sl, ctx) {
       h('b', null, `${ctx.index + 1}`), ` / ${ctx.total}`));
 }
 
-/** 표시(♥·★)를 색깔 배지로 */
-function marks(m) {
-  if (!m) return h('span', { class: 'marks empty' }, '·');
-  const kind = m.includes('★') ? 'star' : 'heart';
-  return h('span', { class: `marks ${kind} n${m.length}` }, m);
+/** 계획안의 ♥·★ 표시를 글로 풀어 단 꼬리표 — 표시가 없는 항목은 꼬리표도 없다 */
+function markTag(m, lang) {
+  const info = MARKS[m];
+  if (!info) return null;
+  return h('span', { class: `mtag ${info.kind}${info.key ? ' key' : ''}` }, info.kind === 'star' ? '★ ' : '♥ ', L(info.label, lang));
 }
 
 /* ───────────────────────── 장 모양들 ───────────────────────── */
@@ -141,7 +141,7 @@ const LAYOUTS = {
             h('span', { class: `mt-sw sw-${c.key}` }, L(c.name, lang)),
             h('span', { class: 'mt-m' }, L(c.meaning, lang)))))),
       h('p', { class: 'caption' }, rich(L(sl.caption, lang))),
-      h('div', { class: 'chips' }, sl.questions.map((q) => h('span', { class: 'chip' }, '? ', L(q, lang)))),
+      h('div', { class: 'chips' }, sl.questions.map((q) => h('span', { class: 'chip' }, L(q, lang)))),
     ];
   },
 
@@ -244,9 +244,9 @@ const LAYOUTS = {
     const list = h('div', { class: 'c-main' },
       h('div', { class: 'kicker' }, L(sl.section, lang)),
       h('ul', { class: `c-items n${sl.items.length}` }, sl.items.map((it, i) => h('li', { class: 'c-item', style: { animationDelay: `${150 + i * 90}ms` } },
-        marks(it.mark),
+        h('span', { class: 'c-icon', 'aria-hidden': 'true' }, it.icon),
         h('div', { class: 'c-txt' },
-          h('h3', null, L(it.head, lang)),
+          h('h3', null, h('span', null, L(it.head, lang)), markTag(it.mark, lang)),
           h('p', null, rich(L(it.body, lang))))))));
     return [h('div', { class: 'c-layout' }, side, list)];
   },

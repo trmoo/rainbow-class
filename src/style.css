@@ -227,7 +227,7 @@ button.ov-card:hover { filter: brightness(1.08); transform: translateY(-3px); }
 .c-spacer { flex: 1; min-height: 12px; }
 .c-main { padding: 30px 52px 16px 44px; display: flex; flex-direction: column; gap: 8px; min-height: 0; }
 .c-items { list-style: none; padding: 0; display: flex; flex-direction: column; justify-content: center; gap: 12px; flex: 1; }
-.c-item { display: grid; grid-template-columns: 92px 1fr; gap: 18px; align-items: start; background: var(--card); border: 2px solid var(--c-t); border-left: 7px solid var(--c); border-radius: 16px; padding: 13px 20px; }
+.c-item { display: grid; grid-template-columns: 76px 1fr; gap: 18px; align-items: center; background: var(--card); border: 2px solid var(--c-t); border-left: 7px solid var(--c); border-radius: 16px; padding: 13px 20px; }
 .c-item h3 { font-size: 27px; font-weight: 850; line-height: 1.2; }
 .c-item p { font-size: 22px; color: #3a4050; line-height: 1.4; margin-top: 4px; }
 .c-items.n3 .c-item { padding: 18px 24px; }
@@ -239,12 +239,16 @@ button.ov-card:hover { filter: brightness(1.08); transform: translateY(-3px); }
 .c-items.n5 .c-item { padding: 9px 20px; }
 .c-items.n5 .c-item h3 { font-size: 24px; }
 .c-items.n5 .c-item p { font-size: 20px; line-height: 1.33; margin-top: 2px; }
-.marks { display: grid; place-items: center; min-height: 44px; text-align: center; font-size: 26px; line-height: 1; border-radius: 10px; padding: 6px 2px; background: var(--c-t); color: var(--c-d); font-family: 'Segoe UI Symbol', 'Apple Symbols', var(--font); white-space: nowrap; }
-.marks.heart { color: #d81b60; }
-.marks.star { color: #d99400; }
-.marks.n1 { font-size: 32px; }
-.marks.n3 { font-size: 25px; letter-spacing: -1px; }
-.marks.empty { color: #c9c2b3; background: #f6f2e9; }
+/* 항목 그림 — 내용을 보여 준다 */
+.c-icon { display: grid; place-items: center; height: 64px; border-radius: 14px; background: var(--c-t); font-size: 38px; line-height: 1; font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', var(--font); }
+.c-items.n5 .c-icon { height: 54px; font-size: 32px; }
+/* ♥·★ 꼬리표 — 계획안 표시를 글로 풀었다. 「가장 중요」는 꽉 채운다 */
+.c-item h3 { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; }
+.mtag { font-size: 15px; font-weight: 800; line-height: 1; padding: 6px 11px 5px; border-radius: 999px; white-space: nowrap; border: 1.5px solid; }
+.mtag.heart { color: #c2185b; background: #fde8f0; border-color: #f6b6cd; }
+.mtag.star { color: #9a6a00; background: #fff4d6; border-color: #f0d38a; }
+.mtag.heart.key { color: #fff; background: #d81b60; border-color: #d81b60; }
+.mtag.star.key { color: #3d2b00; background: #f5b400; border-color: #f5b400; }
 
 /* 색깔 장 왼쪽 아래 덧붙임 */
 .x-quote { margin: 0; font-size: 22px; font-weight: 700; line-height: 1.45; padding: 16px 0 0 0; border-top: 2px solid rgba(255,255,255,.45); }
@@ -283,7 +287,9 @@ button.ov-card:hover { filter: brightness(1.08); transform: translateY(-3px); }
 .zoom img { width: 860px; height: auto; align-self: flex-start; box-shadow: 0 10px 40px rgba(0,0,0,.6); }
 
 /* ═════════════════════════ 16 대표 실천 ═════════════════════════ */
-.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; flex: 1; align-content: center; }
+/* 3칸씩 늘어놓고, 마지막 줄이 덜 차면 가운데로 모은다 */
+.grid3 { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; flex: 1; align-content: center; }
+.grid3 > * { flex: 0 0 calc((100% - 28px) / 3); }
 .pcard { position: relative; display: grid; grid-template-columns: 54px 1fr; gap: 14px; align-items: center; background: var(--card); border: 2px solid var(--c-t); border-left: 8px solid var(--c); border-radius: 18px; padding: 16px 18px; min-height: 124px; }
 .p-icon { font-size: 40px; line-height: 1; }
 .pcard h3 { font-size: 22px; font-weight: 850; line-height: 1.25; padding-right: 54px; }

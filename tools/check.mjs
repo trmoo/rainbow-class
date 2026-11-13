@@ -12,7 +12,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { META, COLORS, SLIDES } from '../src/slides.js';
+import { META, COLORS, MARKS, SLIDES } from '../src/slides.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const errors = [];
@@ -68,7 +68,8 @@ SLIDES.forEach((sl, i) => {
   if (sl.layout === 'color') {
     if (!colorKeys.has(sl.color)) err(`${n}: 없는 색 '${sl.color}'`);
     for (const it of sl.items || []) {
-      if (!['', '♥', '♥♥♥', '★', '★★★'].includes(it.mark)) err(`${n}: 표시 '${it.mark}' 는 ♥ · ♥♥♥ · ★ · ★★★ · 빈칸 가운데 하나여야 합니다`);
+      if (it.mark !== '' && !(it.mark in MARKS)) err(`${n}: 표시 '${it.mark}' 는 ${Object.keys(MARKS).join(' · ')} · 빈칸 가운데 하나여야 합니다`);
+      if (!it.icon?.trim()) err(`${n}: 「${it.head?.ko}」 에 그림(icon)이 없습니다 — 처음 보는 사람도 알아보게 내용에 맞는 그림을 넣습니다`);
     }
     if (!(sl.items?.length >= 3 && sl.items.length <= 5)) err(`${n}: 실천 과제는 3~5개여야 화면에 들어갑니다 (지금 ${sl.items?.length})`);
   }
